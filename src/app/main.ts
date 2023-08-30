@@ -1,6 +1,6 @@
 import { faker as faker } from '@faker-js/faker';
 
-import { addProduct, products, updateProduct } from './products/product.service';
+import { addProduct, products, updateProduct, findProducts } from './products/product.service';
 
 for (let i = 0; i < 50; i++) {
   faker.seed(i); // semilla para obtener datos consistentes
@@ -23,8 +23,16 @@ for (let i = 0; i < 50; i++) {
 
 console.log(products);
 
-// const product = products[0];
+const product = products[0];
 // updateProduct(product.id, {
 //   title: 'New title',
 //   stock: 80,
 // });
+
+
+findProducts({
+  stock: 10,
+  color: 'red',
+  createdAt: new Date(),
+  isNew: true,
+})
