@@ -1,43 +1,30 @@
-import { faker } from '@faker-js/faker';
+import { faker as faker } from '@faker-js/faker';
 
-import { addProduct, products } from './products/product.service';
+import { addProduct, products, updateProduct } from './products/product.service';
 
 for (let i = 0; i < 50; i++) {
   faker.seed(i); // semilla para obtener datos consistentes
 
   addProduct({
-    id: faker.string.uuid(),
-    title: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
     image: faker.image.url(),
     color: faker.color.human(),
+    size: faker.helpers.arrayElement(['S', 'M', 'L', 'XL']),
+    price: parseInt(faker.commerce.price({ min: 0, max: 150 }), 10),
     isNew: faker.datatype.boolean(),
     tags: faker.helpers.multiple(faker.commerce.productAdjective, {
       count: { min: 1, max: 5 },
     }),
-    // Posible solución usando arrayElements
-    // tags: faker.helpers.arrayElements(
-    //   [
-    //     faker.commerce.productAdjective(),
-    //     faker.commerce.productAdjective(),
-    //     faker.commerce.productAdjective(),
-    //     faker.commerce.productAdjective(),
-    //     faker.commerce.productAdjective(),
-    //   ],
-    //   { min: 1, max: 5 }
-    // ),
-    price: parseInt(faker.commerce.price({ min: 0, max: 150 }), 10),
-    createdAt: faker.date.past(),
-    updatedAt: faker.date.recent(),
+    title: faker.commerce.productName(),
     stock: faker.number.int({ min: 0, max: 100 }),
-    size: faker.helpers.arrayElement(['S', 'M', 'L', 'XL']),
-    category: {
-      id: 1,
-      name: faker.commerce.department(),
-      createdAt: faker.date.past(),
-      updatedAt: faker.date.recent(),
-    },
+    categoryId: faker.datatype.uuid()
   });
 }
 
 console.log(products);
+
+// const product = products[0];
+// updateProduct(product.id, {
+//   title: 'New title',
+//   stock: 80,
+// });
