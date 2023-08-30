@@ -2,8 +2,8 @@ import { faker as faker } from '@faker-js/faker';
 
 import { addProduct, products, updateProduct, findProducts } from './products/product.service';
 
-for (let i = 0; i < 50; i++) {
-  faker.seed(i); // semilla para obtener datos consistentes
+for (let index = 0; index < 50; index++) {
+  faker.seed(index); // semilla para obtener datos consistentes
 
   addProduct({
     description: faker.commerce.productDescription(),
