@@ -17,7 +17,7 @@ if (Array.isArray(rtaArray)) {
 console.log('rtaArray', 'Nico =>', rtaArray);
 
 const rtaStr = parseStr(['N', 'i', 'c', 'o']);
-// rtaArray.toLowerCase();
+// rtaStr.toLowerCase();
 if (typeof rtaStr === 'string') {
   rtaStr.toLocaleLowerCase();
 }
